@@ -1,0 +1,29 @@
+<routes>
+    <vType id="car" accel="0.8" decel="3.0"
+           sigma="0.5"
+           length="5"
+           maxSpeed="8"
+           color="1,0,0"/>
+
+    <!-- North to South -->
+    <route id="north_to_south" edges="E0 E1"/>
+
+    <!-- South to North -->
+    <route id="south_to_north" edges="-E1 -E0"/>
+
+    <!-- West to East -->
+    <route id="west_to_east" edges="-E2 E3"/>
+
+    <!-- East to West -->
+    <route id="east_to_west" edges="-E3 E2"/>
+
+    <vehicle id="car0" type="car" route="north_to_south" depart="0"/>
+    <vehicle id="car1" type="car" route="south_to_north" depart="5"/>
+    <vehicle id="car2" type="car" route="west_to_east" depart="10"/>
+    <vehicle id="car3" type="car" route="east_to_west" depart="15"/>
+
+    <vehicle id="car4" type="car" route="north_to_south" depart="20"/>
+    <vehicle id="car5" type="car" route="south_to_north" depart="25"/>
+    <vehicle id="car6" type="car" route="west_to_east" depart="30"/>
+    <vehicle id="car7" type="car" route="east_to_west" depart="35"/>
+</routes>
