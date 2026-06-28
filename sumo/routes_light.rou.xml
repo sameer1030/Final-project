@@ -1,0 +1,14 @@
+<routes>
+    <vType id="car" accel="1.0" decel="4.5" sigma="0.5"
+           length="5" maxSpeed="10" color="1,0,0"/>
+
+    <route id="north_to_south" edges="E0 E1"/>
+    <route id="south_to_north" edges="-E1 -E0"/>
+    <route id="west_to_east" edges="-E2 E3"/>
+    <route id="east_to_west" edges="-E3 E2"/>
+
+    <flow id="north_flow" type="car" route="north_to_south" begin="0" end="500" number="15"/>
+    <flow id="south_flow" type="car" route="south_to_north" begin="0" end="500" number="15"/>
+    <flow id="west_flow" type="car" route="west_to_east" begin="0" end="500" number="15"/>
+    <flow id="east_flow" type="car" route="east_to_west" begin="0" end="500" number="15"/>
+</routes>
