@@ -1,0 +1,45 @@
+@'
+<routes>
+    <vType
+        id="car"
+        accel="1.0"
+        decel="4.5"
+        sigma="0.5"
+        length="5"
+        maxSpeed="10"
+        color="1,0,0"
+    />
+
+    <route id="north_straight" edges="E0 E1"/>
+    <route id="north_left" edges="E0 E3"/>
+    <route id="north_right" edges="E0 E2"/>
+
+    <route id="south_straight" edges="-E1 -E0"/>
+    <route id="south_left" edges="-E1 E2"/>
+    <route id="south_right" edges="-E1 E3"/>
+
+    <route id="west_straight" edges="-E2 E3"/>
+    <route id="west_left" edges="-E2 -E0"/>
+    <route id="west_right" edges="-E2 E1"/>
+
+    <route id="east_straight" edges="-E3 E2"/>
+    <route id="east_left" edges="-E3 E1"/>
+    <route id="east_right" edges="-E3 -E0"/>
+
+    <flow id="north_straight_flow" type="car" route="north_straight" begin="0" end="500" number="48"/>
+    <flow id="north_left_flow" type="car" route="north_left" begin="0" end="500" number="16"/>
+    <flow id="north_right_flow" type="car" route="north_right" begin="0" end="500" number="16"/>
+
+    <flow id="south_straight_flow" type="car" route="south_straight" begin="0" end="500" number="39"/>
+    <flow id="south_left_flow" type="car" route="south_left" begin="0" end="500" number="13"/>
+    <flow id="south_right_flow" type="car" route="south_right" begin="0" end="500" number="13"/>
+
+    <flow id="west_straight_flow" type="car" route="west_straight" begin="0" end="500" number="27"/>
+    <flow id="west_left_flow" type="car" route="west_left" begin="0" end="500" number="9"/>
+    <flow id="west_right_flow" type="car" route="west_right" begin="0" end="500" number="9"/>
+
+    <flow id="east_straight_flow" type="car" route="east_straight" begin="0" end="500" number="24"/>
+    <flow id="east_left_flow" type="car" route="east_left" begin="0" end="500" number="8"/>
+    <flow id="east_right_flow" type="car" route="east_right" begin="0" end="500" number="8"/>
+</routes>
+'@ | Set-Content -Path "sumo\routes_medium.rou.xml" -Encoding UTF8

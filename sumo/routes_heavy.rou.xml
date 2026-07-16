@@ -1,14 +1,121 @@
 <routes>
-    <vType id="car" accel="1.0" decel="4.5" sigma="0.5"
-           length="5" maxSpeed="10" color="1,0,0"/>
 
-    <route id="north_to_south" edges="E0 E1"/>
-    <route id="south_to_north" edges="-E1 -E0"/>
-    <route id="west_to_east" edges="-E2 E3"/>
-    <route id="east_to_west" edges="-E3 E2"/>
+    <vType
+        id="car"
+        accel="1.0"
+        decel="4.5"
+        sigma="0.5"
+        length="5"
+        maxSpeed="10"
+        color="1,0,0"
+    />
 
-    <flow id="north_flow" type="car" route="north_to_south" begin="0" end="500" number="120"/>
-    <flow id="south_flow" type="car" route="south_to_north" begin="0" end="500" number="120"/>
-    <flow id="west_flow" type="car" route="west_to_east" begin="0" end="500" number="120"/>
-    <flow id="east_flow" type="car" route="east_to_west" begin="0" end="500" number="120"/>
+    <!-- Vehicles entering from North -->
+    <route id="north_straight" edges="E0 E1"/>
+    <route id="north_left" edges="E0 E3"/>
+    <route id="north_right" edges="E0 E2"/>
+
+    <!-- Vehicles entering from South -->
+    <route id="south_straight" edges="-E1 -E0"/>
+    <route id="south_left" edges="-E1 E2"/>
+    <route id="south_right" edges="-E1 E3"/>
+
+    <!-- Vehicles entering from West -->
+    <route id="west_straight" edges="-E2 E3"/>
+    <route id="west_left" edges="-E2 -E0"/>
+    <route id="west_right" edges="-E2 E1"/>
+
+    <!-- Vehicles entering from East -->
+    <route id="east_straight" edges="-E3 E2"/>
+    <route id="east_left" edges="-E3 E1"/>
+    <route id="east_right" edges="-E3 -E0"/>
+
+    <!-- North: 180 vehicles -->
+    <flow id="north_straight_flow"
+          type="car"
+          route="north_straight"
+          begin="0"
+          end="500"
+          number="108"/>
+
+    <flow id="north_left_flow"
+          type="car"
+          route="north_left"
+          begin="0"
+          end="500"
+          number="36"/>
+
+    <flow id="north_right_flow"
+          type="car"
+          route="north_right"
+          begin="0"
+          end="500"
+          number="36"/>
+
+    <!-- South: 150 vehicles -->
+    <flow id="south_straight_flow"
+          type="car"
+          route="south_straight"
+          begin="0"
+          end="500"
+          number="90"/>
+
+    <flow id="south_left_flow"
+          type="car"
+          route="south_left"
+          begin="0"
+          end="500"
+          number="30"/>
+
+    <flow id="south_right_flow"
+          type="car"
+          route="south_right"
+          begin="0"
+          end="500"
+          number="30"/>
+
+    <!-- West: 90 vehicles -->
+    <flow id="west_straight_flow"
+          type="car"
+          route="west_straight"
+          begin="0"
+          end="500"
+          number="54"/>
+
+    <flow id="west_left_flow"
+          type="car"
+          route="west_left"
+          begin="0"
+          end="500"
+          number="18"/>
+
+    <flow id="west_right_flow"
+          type="car"
+          route="west_right"
+          begin="0"
+          end="500"
+          number="18"/>
+
+    <!-- East: 70 vehicles -->
+    <flow id="east_straight_flow"
+          type="car"
+          route="east_straight"
+          begin="0"
+          end="500"
+          number="42"/>
+
+    <flow id="east_left_flow"
+          type="car"
+          route="east_left"
+          begin="0"
+          end="500"
+          number="14"/>
+
+    <flow id="east_right_flow"
+          type="car"
+          route="east_right"
+          begin="0"
+          end="500"
+          number="14"/>
+
 </routes>

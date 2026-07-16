@@ -29,35 +29,35 @@
     <route id="east_left" edges="-E3 E1"/>
     <route id="east_right" edges="-E3 -E0"/>
 
-    <!-- North: 25 vehicles -->
+    <!-- North: 180 vehicles -->
     <flow id="north_straight_flow" type="car" route="north_straight"
-          begin="0" end="500" number="15"/>
+          begin="0" end="500" number="108"/>
     <flow id="north_left_flow" type="car" route="north_left"
-          begin="0" end="500" number="5"/>
+          begin="0" end="500" number="36"/>
     <flow id="north_right_flow" type="car" route="north_right"
-          begin="0" end="500" number="5"/>
+          begin="0" end="500" number="36"/>
 
-    <!-- South: 20 vehicles -->
+    <!-- South: 150 vehicles -->
     <flow id="south_straight_flow" type="car" route="south_straight"
-          begin="0" end="500" number="12"/>
+          begin="0" end="500" number="90"/>
     <flow id="south_left_flow" type="car" route="south_left"
-          begin="0" end="500" number="4"/>
+          begin="0" end="500" number="30"/>
     <flow id="south_right_flow" type="car" route="south_right"
-          begin="0" end="500" number="4"/>
+          begin="0" end="500" number="30"/>
 
-    <!-- West: 15 vehicles -->
+    <!-- West: 90 vehicles -->
     <flow id="west_straight_flow" type="car" route="west_straight"
-          begin="0" end="500" number="9"/>
+          begin="0" end="500" number="54"/>
     <flow id="west_left_flow" type="car" route="west_left"
-          begin="0" end="500" number="3"/>
+          begin="0" end="500" number="18"/>
     <flow id="west_right_flow" type="car" route="west_right"
-          begin="0" end="500" number="3"/>
+          begin="0" end="500" number="18"/>
 
-    <!-- East: 15 vehicles -->
+    <!-- East: 70 vehicles -->
     <flow id="east_straight_flow" type="car" route="east_straight"
-          begin="0" end="500" number="9"/>
+          begin="0" end="500" number="42"/>
     <flow id="east_left_flow" type="car" route="east_left"
-          begin="0" end="500" number="3"/>
+          begin="0" end="500" number="14"/>
     <flow id="east_right_flow" type="car" route="east_right"
-          begin="0" end="500" number="3"/>
+          begin="0" end="500" number="14"/>
 </routes>
