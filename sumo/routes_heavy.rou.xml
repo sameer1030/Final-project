@@ -10,25 +10,21 @@
         color="1,0,0"
     />
 
-    <!-- Vehicles entering from North -->
-    <route id="north_straight" edges="E0 E1"/>
-    <route id="north_left" edges="E0 E3"/>
-    <route id="north_right" edges="E0 E2"/>
+      <route id="north_right" edges="-E0 E1"/>
+      <route id="north_straight" edges="-E0 E2"/>
+      <route id="north_left" edges="-E0 E3"/>
 
-    <!-- Vehicles entering from South -->
-    <route id="south_straight" edges="-E1 -E0"/>
-    <route id="south_left" edges="-E1 E2"/>
-    <route id="south_right" edges="-E1 E3"/>
+      <route id="west_right" edges="-E1 E2"/>
+      <route id="west_straight" edges="-E1 E3"/>
+      <route id="west_left" edges="-E1 E0"/>
 
-    <!-- Vehicles entering from West -->
-    <route id="west_straight" edges="-E2 E3"/>
-    <route id="west_left" edges="-E2 -E0"/>
-    <route id="west_right" edges="-E2 E1"/>
+      <route id="south_right" edges="-E2 E3"/>
+      <route id="south_straight" edges="-E2 E0"/>
+      <route id="south_left" edges="-E2 E1"/>
 
-    <!-- Vehicles entering from East -->
-    <route id="east_straight" edges="-E3 E2"/>
-    <route id="east_left" edges="-E3 E1"/>
-    <route id="east_right" edges="-E3 -E0"/>
+      <route id="east_right" edges="-E3 E0"/>
+      <route id="east_straight" edges="-E3 E1"/>
+      <route id="east_left" edges="-E3 E2"/>
 
     <!-- North: 180 vehicles -->
     <flow id="north_straight_flow"

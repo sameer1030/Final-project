@@ -5,24 +5,23 @@ import traci
 
 
 SUMO_BINARY = "sumo-gui"
-TRAFFIC_LIGHT_ID = "J0"
+TRAFFIC_LIGHT_ID = "J1"
 
 SCENARIOS = {
-    "light": "sumo/simulation_light_v2.sumocfg",
-    "medium": "sumo/simulation_medium_v2.sumocfg",
-    "heavy": "sumo/simulation_heavy_v2.sumocfg",
+    "light": "sumo/simulation_light.sumocfg",
+    "medium": "sumo/simulation_medium.sumocfg",
+    "heavy": "sumo/simulation_heavy.sumocfg",
 }
 
-# Two incoming lanes on each approach
+# Incoming lanes in the stable one-lane network
 LANES = {
-    "north": ["-E0_0", "-E0_1"],
-    "south": ["-E2_0", "-E2_1"],
-    "west": ["-E1_0", "-E1_1"],
-    "east": ["-E3_0", "-E3_1"],
+    "north": "E0_0",
+    "south": "-E1_0",
+    "west": "-E2_0",
+    "east": "-E3_0",
 }
 
-# Phase 2 serves the north-south pair.
-# Phase 0 serves the east-west pair.
+# Existing traffic-light phase indices
 NS_PHASE = 0
 EW_PHASE = 2
 NS_YELLOW_PHASE = 1
@@ -30,6 +29,7 @@ EW_YELLOW_PHASE = 3
 
 SIMULATION_STEPS = 500
 
+# Adaptive switching constraints
 MIN_GREEN = 12
 MAX_GREEN = 32
 CHECK_INTERVAL = 5
@@ -37,17 +37,17 @@ SWITCH_ADVANTAGE = 4
 
 
 def get_queue_length(lane_id):
-    """Return halted vehicles on one lane."""
+    """Return the number of halted vehicles on one lane."""
     return traci.lane.getLastStepHaltingNumber(lane_id)
 
 
 def get_lane_vehicle_count(lane_id):
-    """Return vehicles currently present on one lane."""
+    """Return all vehicles currently present on one lane."""
     return traci.lane.getLastStepVehicleNumber(lane_id)
 
 
 def get_lane_waiting_time(lane_id):
-    """Return waiting time of vehicles currently on one lane."""
+    """Return cumulative waiting time for vehicles currently on one lane."""
     return sum(
         traci.vehicle.getWaitingTime(vehicle_id)
         for vehicle_id in traci.lane.getLastStepVehicleIDs(lane_id)
@@ -55,7 +55,7 @@ def get_lane_waiting_time(lane_id):
 
 
 def get_total_waiting_time():
-    """Return total waiting time of all active vehicles."""
+    """Return cumulative waiting time for every vehicle in the simulation."""
     return sum(
         traci.vehicle.getWaitingTime(vehicle_id)
         for vehicle_id in traci.vehicle.getIDList()
@@ -63,11 +63,17 @@ def get_total_waiting_time():
 
 
 def get_direction_metrics(direction):
-    """Calculate combined demand across all lanes in one direction pair."""
+    """Calculate demand measurements for NS or EW traffic."""
     if direction == "NS":
-        lane_ids = LANES["north"] + LANES["south"]
+        lane_ids = [
+            LANES["north"],
+            LANES["south"],
+        ]
     elif direction == "EW":
-        lane_ids = LANES["west"] + LANES["east"]
+        lane_ids = [
+            LANES["west"],
+            LANES["east"],
+        ]
     else:
         raise ValueError(f"Unknown direction: {direction}")
 
@@ -86,6 +92,7 @@ def get_direction_metrics(direction):
         for lane_id in lane_ids
     )
 
+    # Queue length receives the highest priority.
     traffic_score = (
         queue * 3.5
         + vehicle_count * 1.2
@@ -96,25 +103,26 @@ def get_direction_metrics(direction):
 
 
 def classify_traffic(score):
-    """Assign a readable traffic category."""
+    """Assign a readable traffic category to the current score."""
     if score == 0:
         return "EMPTY"
-    if score <= 8:
+    elif score <= 8:
         return "VERY_LIGHT"
-    if score <= 20:
+    elif score <= 20:
         return "LIGHT"
-    if score <= 40:
+    elif score <= 40:
         return "MEDIUM"
-    if score <= 70:
+    elif score <= 70:
         return "HEAVY"
-    return "VERY_HEAVY"
+    else:
+        return "VERY_HEAVY"
 
 
 def run_scenario(scenario_name, sumo_config):
-    """Run one two-lane scenario using adaptive control."""
-    results_file = f"results/adaptive_v2_{scenario_name}_results.csv"
+    """Run one traffic scenario using adaptive signal control."""
+    results_file = f"results/adaptive_{scenario_name}_results.csv"
 
-    print(f"\nStarting adaptive V2 {scenario_name} scenario...")
+    print(f"\nStarting adaptive {scenario_name} scenario...")
     print(f"Using configuration: {sumo_config}")
 
     traci.start([
@@ -132,14 +140,14 @@ def run_scenario(scenario_name, sumo_config):
     try:
         traci.trafficlight.setPhase(
             TRAFFIC_LIGHT_ID,
-            current_sumo_phase,
+            current_sumo_phase
         )
 
         with open(
             results_file,
             mode="w",
             newline="",
-            encoding="utf-8",
+            encoding="utf-8"
         ) as file:
             writer = csv.writer(file)
 
@@ -191,18 +199,23 @@ def run_scenario(scenario_name, sumo_config):
 
                 elapsed_green = step - last_switch_step
                 traffic_level = classify_traffic(current_score)
+
                 should_switch = False
 
+                # Prevent one direction from keeping green indefinitely.
                 if elapsed_green >= MAX_GREEN:
                     should_switch = True
 
+                # After minimum green, reconsider traffic every five seconds.
                 elif (
                     elapsed_green >= MIN_GREEN
                     and elapsed_green % CHECK_INTERVAL == 0
                 ):
+                    # Switch when the active direction is empty.
                     if current_score == 0 and opposite_score > 0:
                         should_switch = True
 
+                    # Switch when the opposite demand is clearly higher.
                     elif (
                         opposite_score
                         >= current_score + SWITCH_ADVANTAGE
@@ -217,9 +230,10 @@ def run_scenario(scenario_name, sumo_config):
 
                     traci.trafficlight.setPhase(
                         TRAFFIC_LIGHT_ID,
-                        current_sumo_phase,
+                        current_sumo_phase
                     )
 
+                    # Report the new active direction's traffic category.
                     active_score = (
                         ns_score
                         if current_phase == "NS"
@@ -229,7 +243,9 @@ def run_scenario(scenario_name, sumo_config):
 
                 vehicles_in_simulation = traci.vehicle.getIDCount()
                 total_waiting_time = get_total_waiting_time()
-                completed_vehicles = traci.simulation.getArrivedNumber()
+                completed_vehicles = (
+                    traci.simulation.getArrivedNumber()
+                )
 
                 writer.writerow([
                     step,
@@ -250,7 +266,7 @@ def run_scenario(scenario_name, sumo_config):
                 ])
 
                 print(
-                    f"[ADAPTIVE V2 - {scenario_name.upper()}] "
+                    f"[ADAPTIVE - {scenario_name.upper()}] "
                     f"Step {step} | "
                     f"NS queue={ns_queue} | "
                     f"EW queue={ew_queue} | "
@@ -260,13 +276,13 @@ def run_scenario(scenario_name, sumo_config):
                     f"Level={traffic_level} | "
                     f"ElapsedGreen={elapsed_green} | "
                     f"Waiting={total_waiting_time:.2f}",
-                    flush=True,
+                    flush=True
                 )
 
     finally:
         traci.close()
 
-    print(f"Adaptive V2 {scenario_name} scenario completed.")
+    print(f"Adaptive {scenario_name} scenario completed.")
     print(f"Saved to {results_file}")
 
 
@@ -276,7 +292,7 @@ def run():
     for scenario_name, sumo_config in SCENARIOS.items():
         run_scenario(scenario_name, sumo_config)
 
-    print("\nAll adaptive V2 scenarios completed.")
+    print("\nAll adaptive scenarios completed.")
 
 
 if __name__ == "__main__":

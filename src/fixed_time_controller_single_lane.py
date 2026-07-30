@@ -23,8 +23,8 @@ LANES = {
 SIMULATION_STEPS = 500
 PHASE_DURATION = 30
 
-NS_GREEN_PHASE = 0
-EW_GREEN_PHASE = 2
+NS_GREEN_PHASE = 2
+EW_GREEN_PHASE = 0
 
 
 def get_queue_length(lane_ids):

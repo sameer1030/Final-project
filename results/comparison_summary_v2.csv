@@ -1,0 +1,7 @@
+controller,scenario,average_waiting_time,maximum_waiting_time,average_queue_length,maximum_queue_length,throughput
+fixed,light,9.89,158.0,0.87,6,75
+fixed,medium,38.43,167.0,3.66,8,225
+fixed,heavy,117.94,325.0,9.38,15,316
+adaptive,light,2.2,68.0,0.38,6,75
+adaptive,medium,10.05,68.0,1.67,7,228
+adaptive,heavy,39.34,98.0,6.09,12,330

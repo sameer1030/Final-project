@@ -4,8 +4,13 @@ import matplotlib.pyplot as plt
 
 RESULTS_DIR = "results"
 
-comparison = pd.read_csv(os.path.join(RESULTS_DIR, "comparison_summary.csv"))
-improvement = pd.read_csv(os.path.join(RESULTS_DIR, "improvement_summary.csv"))
+comparison = pd.read_csv(
+    os.path.join(RESULTS_DIR, "comparison_summary_v2.csv")
+)
+
+improvement = pd.read_csv(
+    os.path.join(RESULTS_DIR, "improvement_summary_v2.csv")
+)
 
 fixed = comparison[comparison["controller"] == "fixed"]
 adaptive = comparison[comparison["controller"] == "adaptive"]
@@ -123,7 +128,7 @@ plt.close()
 
 print("\nGraphs generated successfully.")
 print("Saved in results folder:")
-print("- waiting_time_comparison.png")
-print("- queue_length_comparison.png")
-print("- throughput_comparison.png")
-print("- percentage_improvement_comparison.png")
+print("waiting_time_comparison_v2.png")
+print("queue_length_comparison_v2.png")
+print("throughput_comparison_v2.png")
+print("percentage_improvement_comparison_v2.png")
