@@ -15,7 +15,7 @@ improvement = pd.read_csv(
 fixed = comparison[comparison["controller"] == "fixed"]
 adaptive = comparison[comparison["controller"] == "adaptive"]
 
-scenarios = ["Light", "Medium", "Heavy"]
+scenarios = ["Light", "Medium", "Heavy", "Unbalanced"]
 x = range(len(scenarios))
 
 

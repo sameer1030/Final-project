@@ -14,6 +14,11 @@ SCENARIOS = {
     "unbalanced": "sumo/simulation_unbalanced_v2.sumocfg",
 }
 
+MIN_GREEN = 12
+MAX_GREEN = 32
+CHECK_INTERVAL = 5
+SWITCH_ADVANTAGE = 4
+
 # Two incoming lanes on each approach
 LANES = {
     "north": ["-E0_0", "-E0_1"],
@@ -31,10 +36,10 @@ EW_YELLOW_PHASE = 3
 
 SIMULATION_STEPS = 500
 
-MIN_GREEN = 12
-MAX_GREEN = 32
+MIN_GREEN = 15
+MAX_GREEN = 40
 CHECK_INTERVAL = 5
-SWITCH_ADVANTAGE = 4
+SWITCH_ADVANTAGE = 6
 
 
 def get_queue_length(lane_id):

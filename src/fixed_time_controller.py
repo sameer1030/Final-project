@@ -11,6 +11,7 @@ SCENARIOS = {
     "light": "sumo/simulation_light_v2.sumocfg",
     "medium": "sumo/simulation_medium_v2.sumocfg",
     "heavy": "sumo/simulation_heavy_v2.sumocfg",
+    "unbalanced": "sumo/simulation_unbalanced_v2.sumocfg",
 }
 
 LANES = {

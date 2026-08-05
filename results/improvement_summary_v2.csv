@@ -2,3 +2,4 @@ scenario,fixed_avg_waiting_time,adaptive_avg_waiting_time,waiting_time_improveme
 light,9.89,2.2,77.76,0.87,0.38,56.32,75,75,0.0
 medium,38.43,10.05,73.85,3.66,1.67,54.37,225,228,1.33
 heavy,117.94,39.34,66.64,9.38,6.09,35.07,316,330,4.43
+unbalanced,67.72,36.51,46.09,5.15,4.33,15.92,249,283,13.65

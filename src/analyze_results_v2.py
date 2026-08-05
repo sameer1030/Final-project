@@ -12,6 +12,8 @@ FILES = {
     ("adaptive", "light"): "adaptive_v2_light_results.csv",
     ("adaptive", "medium"): "adaptive_v2_medium_results.csv",
     ("adaptive", "heavy"): "adaptive_v2_heavy_results.csv",
+    ("fixed", "unbalanced"): "fixed_v2_unbalanced_results.csv",
+    ("adaptive", "unbalanced"): "adaptive_v2_unbalanced_results.csv",
 }
 
 
@@ -76,7 +78,7 @@ def main():
 
     comparison_rows = []
 
-    for scenario in ["light", "medium", "heavy"]:
+    for scenario in ["light", "medium", "heavy", "unbalanced"]:
         fixed = summary_df[
             (summary_df["controller"] == "fixed")
             & (summary_df["scenario"] == scenario)
