@@ -1,12 +1,11 @@
 <routes>
 
-    <vType id="car"
-           accel="1.0"
-           decel="4.5"
-           sigma="0.5"
-           length="5"
-           maxSpeed="10"
-           color="1,0,0"/>
+    <vType id="red" accel="1.0" decel="4.5" sigma="0.5" length="5" maxSpeed="10" color="1,0,0"/>
+    <vType id="blue" accel="1.0" decel="4.5" sigma="0.5" length="5" maxSpeed="10" color="0,0,1"/>
+    <vType id="white" accel="1.0" decel="4.5" sigma="0.5" length="5" maxSpeed="10" color="1,1,1"/>
+    <vType id="black" accel="1.0" decel="4.5" sigma="0.5" length="5" maxSpeed="10" color="0.2,0.2,0.2"/>
+    <vType id="yellow" accel="1.0" decel="4.5" sigma="0.5" length="5" maxSpeed="10" color="1,1,0"/>
+    <vType id="silver" accel="1.0" decel="4.5" sigma="0.5" length="5" maxSpeed="10" color="0.7,0.7,0.7"/>
 
     <!-- Routes -->
     <route id="north_to_south" edges="E0 E1"/>
@@ -16,28 +15,48 @@
 
     <!-- Traffic flow -->
     <flow id="north_flow"
-          type="car"
+          type="red"
+          type="blue"
+          type="white"
+          type="black"
+          type="yellow"
+          type="silver"
           route="north_to_south"
           begin="0"
           end="100"
           number="40"/>
 
     <flow id="south_flow"
-          type="car"
+          type="red"
+          type="blue"
+          type="white"
+          type="black"
+          type="yellow"
+          type="silver"
           route="south_to_north"
           begin="0"
           end="100"
           number="40"/>
 
     <flow id="west_flow"
-          type="car"
+          type="red"
+          type="blue"
+          type="white"
+          type="black"
+          type="yellow"
+          type="silver"
           route="west_to_east"
           begin="0"
           end="100"
           number="50"/>
 
     <flow id="east_flow"
-          type="car"
+          type="red"
+          type="blue"
+          type="white"
+          type="black"
+          type="yellow"
+          type="silver"
           route="east_to_west"
           begin="0"
           end="100"

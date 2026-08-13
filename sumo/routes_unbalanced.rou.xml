@@ -1,14 +1,188 @@
 <routes>
 
+    <!-- =========================================================
+         MIXED VEHICLE TYPES
+         75% Cars
+         10% Vans
+         10% Buses
+         5% Trucks
+         ========================================================= -->
+
+    <vTypeDistribution id="mixedTraffic">
+
+    <!-- Coloured passenger cars -->
+
     <vType
-        id="car"
-        accel="1.0"
+        id="car_red"
+        vClass="passenger"
+        accel="2.6"
         decel="4.5"
         sigma="0.5"
-        length="5"
-        maxSpeed="10"
+        length="4.8"
+        maxSpeed="13.9"
         color="1,0,0"
+        guiShape="passenger"
+        probability="0.15"
     />
+
+    <vType
+        id="car_blue"
+        vClass="passenger"
+        accel="2.6"
+        decel="4.5"
+        sigma="0.5"
+        length="4.8"
+        maxSpeed="13.9"
+        color="0,0.3,1"
+        guiShape="passenger"
+        probability="0.15"
+    />
+
+    <vType
+        id="car_white"
+        vClass="passenger"
+        accel="2.6"
+        decel="4.5"
+        sigma="0.5"
+        length="4.8"
+        maxSpeed="13.9"
+        color="1,1,1"
+        guiShape="passenger"
+        probability="0.15"
+    />
+
+    <vType
+        id="car_silver"
+        vClass="passenger"
+        accel="2.6"
+        decel="4.5"
+        sigma="0.5"
+        length="4.8"
+        maxSpeed="13.9"
+        color="0.65,0.65,0.65"
+        guiShape="passenger"
+        probability="0.15"
+    />
+
+
+    <!-- Van -->
+
+    <vType
+        id="van_demo"
+        vClass="passenger"
+        accel="2.0"
+        decel="4.0"
+        sigma="0.5"
+        tau="1.1"
+        minGap="2.8"
+        length="5.8"
+        maxSpeed="12.5"
+        color="0,0.8,1"
+        guiShape="delivery"
+        lcAssertive="0.9"
+        probability="0.15"
+    />
+
+
+    <!-- Bus -->
+
+    <vType
+        id="bus_demo"
+        vClass="passenger"
+        accel="1.2"
+        decel="3.5"
+        sigma="0.4"
+        tau="1.4"
+        minGap="3.5"
+        length="10"
+        maxSpeed="11.0"
+        color="1,0.8,0"
+        guiShape="bus"
+        lcAssertive="0.6"
+        probability="0.15"
+    />
+
+
+    <!-- Truck -->
+
+    <vType
+        id="truck_demo"
+        vClass="passenger"
+        accel="1.0"
+        decel="3.2"
+        sigma="0.4"
+        tau="1.5"
+        minGap="4.0"
+        length="8.5"
+        maxSpeed="10.0"
+        color="0,0.8,0.2"
+        guiShape="truck"
+        lcAssertive="0.5"
+        probability="0.10"
+    />
+
+
+    <!-- Calm Driver -->
+
+    <vType
+        id="car_calm"
+        vClass="passenger"
+        accel="2.2"
+        decel="4.5"
+        sigma="0.2"
+        tau="1.3"
+        minGap="3.0"
+        length="4.8"
+        maxSpeed="13.0"
+        color="1,1,1"
+        guiShape="passenger"
+        lcAssertive="0.7"
+        probability="0.20"
+    />
+
+
+    <!-- Normal Driver -->
+
+    <vType
+        id="car_normal"
+        vClass="passenger"
+        accel="2.6"
+        decel="4.5"
+        sigma="0.5"
+        tau="1.0"
+        minGap="2.5"
+        length="4.8"
+        maxSpeed="13.9"
+        color="0,0.3,1"
+        guiShape="passenger"
+        lcAssertive="1.0"
+        probability="0.20"
+    />
+
+
+    <!-- Aggressive Driver -->
+
+    <vType
+        id="car_aggressive"
+        vClass="passenger"
+        accel="3.0"
+        decel="4.8"
+        sigma="0.8"
+        tau="0.8"
+        minGap="2.0"
+        length="4.8"
+        maxSpeed="14.5"
+        color="1,0,0"
+        guiShape="passenger"
+        lcAssertive="1.3"
+        probability="0.20"
+    />
+
+</vTypeDistribution>
+
+    <!-- =========================================================
+         ROUTES
+         ========================================================= -->
 
     <!-- North routes -->
     <route id="north_right" edges="-E0 E1"/>
@@ -30,89 +204,103 @@
     <route id="east_straight" edges="-E3 E1"/>
     <route id="east_left" edges="-E3 E2"/>
 
-    <!-- Heavy northbound demand: 180 vehicles -->
+
+    <!-- =========================================================
+         UNBALANCED TRAFFIC SCENARIO
+         TOTAL VEHICLES = 390
+         ========================================================= -->
+
+
+    <!-- NORTH: 180 vehicles -->
+
     <flow id="north_straight_flow"
-          type="car"
+          type="mixedTraffic"
           route="north_straight"
           begin="0"
           end="500"
           number="108"/>
 
     <flow id="north_left_flow"
-          type="car"
+          type="mixedTraffic"
           route="north_left"
           begin="0"
           end="500"
           number="36"/>
 
     <flow id="north_right_flow"
-          type="car"
+          type="mixedTraffic"
           route="north_right"
           begin="0"
           end="500"
           number="36"/>
 
-    <!-- Heavy southbound demand: 150 vehicles -->
+
+    <!-- SOUTH: 150 vehicles -->
+
     <flow id="south_straight_flow"
-          type="car"
+          type="mixedTraffic"
           route="south_straight"
           begin="0"
           end="500"
           number="90"/>
 
     <flow id="south_left_flow"
-          type="car"
+          type="mixedTraffic"
           route="south_left"
           begin="0"
           end="500"
           number="30"/>
 
     <flow id="south_right_flow"
-          type="car"
+          type="mixedTraffic"
           route="south_right"
           begin="0"
           end="500"
           number="30"/>
 
-    <!-- Light westbound demand: 30 vehicles -->
+
+    <!-- WEST: 30 vehicles -->
+
     <flow id="west_straight_flow"
-          type="car"
+          type="mixedTraffic"
           route="west_straight"
           begin="0"
           end="500"
           number="18"/>
 
     <flow id="west_left_flow"
-          type="car"
+          type="mixedTraffic"
           route="west_left"
           begin="0"
           end="500"
           number="6"/>
 
     <flow id="west_right_flow"
-          type="car"
+          type="mixedTraffic"
           route="west_right"
           begin="0"
           end="500"
           number="6"/>
 
-    <!-- Light eastbound demand: 30 vehicles -->
+
+    <!-- EAST: 30 vehicles -->
+
     <flow id="east_straight_flow"
-          type="car"
+          type="mixedTraffic"
           route="east_straight"
           begin="0"
           end="500"
           number="18"/>
 
     <flow id="east_left_flow"
-          type="car"
+          type="mixedTraffic"
           route="east_left"
           begin="0"
           end="500"
           number="6"/>
 
     <flow id="east_right_flow"
-          type="car"
+          type="mixedTraffic"
           route="east_right"
           begin="0"
           end="500"
