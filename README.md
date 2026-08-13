@@ -1,57 +1,73 @@
 # Weighted Adaptive Traffic Signal Controller (WATSC): A Rule-Based Adaptive Traffic Signal Control System Using SUMO and TraCI
 
-## Short Description
-This MSc project aims to design and evaluate a smart traffic management system using simulated IoT traffic data and adaptive signal control techniques. The system focuses on improving traffic flow at road intersections by dynamically adjusting traffic signal timings based on real-time traffic conditions. The project will be implemented using traffic simulation software and Python-based control logic to compare adaptive traffic management with traditional fixed-time traffic systems.
+## Overview
 
----
+This repository contains the implementation of the **Weighted Adaptive Traffic Signal Controller (WATSC)** developed as part of an MSc research project at Dublin City University.
 
-## Planned Tools and Technologies
+The project presents a lightweight rule-based adaptive traffic signal controller that dynamically allocates green signal time using real-time traffic conditions obtained from the Simulation of Urban Mobility (SUMO) through the Traffic Control Interface (TraCI). The proposed controller is evaluated against a conventional Fixed-Time Controller (FTC) under multiple traffic demand scenarios.
 
-### Traffic Simulation
-- **SUMO (Simulation of Urban Mobility)**  
-  Used to simulate vehicle movement and traffic flow within a controlled road environment.
+## Project Features
 
-### Programming Language
-- **Python**  
-  Used for implementing adaptive traffic signal control logic and system integration.
+- Rule-based adaptive traffic signal control
+- Integration of SUMO with Python using TraCI
+- Dynamic signal timing based on:
+  - Queue length
+  - Vehicle count
+  - Cumulative waiting time
+- Performance comparison with a Fixed-Time Controller
+- Evaluation under:
+  - Light traffic
+  - Medium traffic
+  - Heavy traffic
+  - Unbalanced traffic
+- Automatic generation of performance graphs and comparison summaries
 
-### Communication Interface
-- **TraCI (Traffic Control Interface)**  
-  Used to enable real-time communication between Python and the SUMO simulation environment.
+## Technologies Used
 
-### Data Processing and Visualisation
-- **NumPy** – Numerical data processing  
-- **Pandas** – Data analysis and management  
-- **Matplotlib** – Graph generation and result visualisation
+- SUMO (Simulation of Urban Mobility)
+- Python
+- TraCI (Traffic Control Interface)
+- Pandas
+- NumPy
+- Matplotlib
+- Git and GitHub
 
-### Development Environment
-- **GitHub** – Version control and development tracking  
-- **Visual Studio Code / Jupyter Notebook** – Development and experimentation
+## Repository Structure
 
----
+```text
+src/
+    Python controllers
+    Analysis scripts
+    Graph generation
 
-## Project Objectives
+sumo/
+    Network files
+    Route files
+    Simulation configuration files
 
-The main objectives of this project are:
+results/
+    CSV datasets
+    Performance comparison summaries
+    Generated graphs
 
-1. To develop a traffic simulation model using SUMO.
+## Performance Metrics
 
-2. To analyse traffic conditions using simulated IoT traffic data such as vehicle count and queue length.
+The controllers are evaluated using:
 
-3. To design and implement an adaptive traffic signal control mechanism using Python.
+- Average waiting time
+- Maximum waiting time
+- Average queue length
+- Maximum queue length
+- Vehicle throughput
 
-4. To integrate Python with SUMO using TraCI for real-time traffic signal control.
+## Project Outcome
 
-5. To evaluate the performance of the adaptive system against traditional fixed-time traffic signal systems.
+Experimental evaluation demonstrated that the proposed Weighted Adaptive Traffic Signal Controller (WATSC) consistently reduced vehicle waiting time and queue length while maintaining or improving vehicle throughput when compared with a conventional Fixed-Time Controller. The controller achieved its best performance under Medium, Heavy and Unbalanced traffic conditions, demonstrating the effectiveness of a lightweight rule-based adaptive traffic signal control strategy.
 
-6. To assess system performance using measurable metrics such as:
-   - Average waiting time
-   - Queue length
-   - Vehicle throughput
-   - Delay per vehicle
+## Repository
 
----
+GitHub Repository:
 
-## Expected Outcome
+https://github.com/sameer1030/Final-project
 
 The expected outcome of this project is a working simulation-based smart traffic management system capable of dynamically adjusting traffic signals according to traffic conditions. The project aims to demonstrate improvements in traffic efficiency when compared with conventional fixed-time signal systems.
