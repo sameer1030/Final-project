@@ -1,4 +1,4 @@
-# Design and Evaluation of a Smart Traffic Management System Using IoT Data and Adaptive Signal Control
+# Weighted Adaptive Traffic Signal Controller (WATSC): A Rule-Based Adaptive Traffic Signal Control System Using SUMO and TraCI
 
 ## Short Description
 This MSc project aims to design and evaluate a smart traffic management system using simulated IoT traffic data and adaptive signal control techniques. The system focuses on improving traffic flow at road intersections by dynamically adjusting traffic signal timings based on real-time traffic conditions. The project will be implemented using traffic simulation software and Python-based control logic to compare adaptive traffic management with traditional fixed-time traffic systems.
