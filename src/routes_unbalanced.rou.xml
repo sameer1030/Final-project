@@ -8,7 +8,7 @@
          5% Trucks
          ========================================================= -->
 
-  <vTypeDistribution id="mixedTraffic">
+    <vTypeDistribution id="mixedTraffic">
 
     <!-- Coloured passenger cars -->
 
@@ -180,34 +180,35 @@
 
 </vTypeDistribution>
 
+
     <!-- =========================================================
          ROUTES
          ========================================================= -->
 
-    <!-- North -->
+    <!-- North routes -->
     <route id="north_right" edges="-E0 E1"/>
     <route id="north_straight" edges="-E0 E2"/>
     <route id="north_left" edges="-E0 E3"/>
 
-    <!-- West -->
+    <!-- West routes -->
     <route id="west_right" edges="-E1 E2"/>
     <route id="west_straight" edges="-E1 E3"/>
     <route id="west_left" edges="-E1 E0"/>
 
-    <!-- South -->
+    <!-- South routes -->
     <route id="south_right" edges="-E2 E3"/>
     <route id="south_straight" edges="-E2 E0"/>
     <route id="south_left" edges="-E2 E1"/>
 
-    <!-- East -->
+    <!-- East routes -->
     <route id="east_right" edges="-E3 E0"/>
     <route id="east_straight" edges="-E3 E1"/>
     <route id="east_left" edges="-E3 E2"/>
 
 
     <!-- =========================================================
-         HEAVY TRAFFIC SCENARIO
-         TOTAL VEHICLES = 490
+         UNBALANCED TRAFFIC SCENARIO
+         TOTAL VEHICLES = 390
          ========================================================= -->
 
 
@@ -259,51 +260,51 @@
           number="30"/>
 
 
-    <!-- WEST: 90 vehicles -->
+    <!-- WEST: 30 vehicles -->
 
     <flow id="west_straight_flow"
           type="mixedTraffic"
           route="west_straight"
           begin="0"
           end="500"
-          number="54"/>
+          number="18"/>
 
     <flow id="west_left_flow"
           type="mixedTraffic"
           route="west_left"
           begin="0"
           end="500"
-          number="18"/>
+          number="6"/>
 
     <flow id="west_right_flow"
           type="mixedTraffic"
           route="west_right"
           begin="0"
           end="500"
-          number="18"/>
+          number="6"/>
 
 
-    <!-- EAST: 70 vehicles -->
+    <!-- EAST: 30 vehicles -->
 
     <flow id="east_straight_flow"
           type="mixedTraffic"
           route="east_straight"
           begin="0"
           end="500"
-          number="42"/>
+          number="18"/>
 
     <flow id="east_left_flow"
           type="mixedTraffic"
           route="east_left"
           begin="0"
           end="500"
-          number="14"/>
+          number="6"/>
 
     <flow id="east_right_flow"
           type="mixedTraffic"
           route="east_right"
           begin="0"
           end="500"
-          number="14"/>
+          number="6"/>
 
 </routes>
