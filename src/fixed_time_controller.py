@@ -1,3 +1,14 @@
+"""
+Fixed-Time Traffic Signal Controller
+
+MSc Project
+Dublin City University
+
+Author: Sameer Srinivas
+
+Implements the baseline fixed-time traffic signal controller used
+for comparison with the proposed WATSC.
+"""
 import csv
 import os
 

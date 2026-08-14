@@ -1,3 +1,14 @@
+"""
+Weighted Adaptive Traffic Signal Controller (WATSC)
+
+MSc Project
+Dublin City University
+
+Author: Sameer Srinivas
+
+Implements a rule-based adaptive traffic signal controller using
+SUMO and TraCI for real-time traffic signal optimisation.
+"""
 import csv
 import os
 

@@ -1,3 +1,14 @@
+"""
+Performance Analysis
+
+MSc Project
+Dublin City University
+
+Author: Sameer Srinivas
+
+Computes performance metrics and generates comparison summaries
+for the Fixed-Time Controller and WATSC.
+"""
 import os
 
 import pandas as pd
